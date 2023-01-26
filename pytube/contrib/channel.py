@@ -214,14 +214,22 @@ class Channel(Playlist):
 
     # this is the json tree structure, if the json was extracted from
     # html
+
     try:
-      playlists = initial_data["contents"][
-          "twoColumnBrowseResultsRenderer"][
-          "tabs"][3]["tabRenderer"]["content"][
-          "sectionListRenderer"]["contents"][0][
-          "itemSectionRenderer"]["contents"][0][
-          'shelfRenderer']["content"][
-          'horizontalListRenderer']["items"]
+      for tab in initial_data["contents"]["twoColumnBrowseResultsRenderer"]["tabs"]:
+        if tab["tabRenderer"]["title"] == "Playlists":
+          playlists = tab["tabRenderer"]["content"][
+              "sectionListRenderer"]["contents"][0][
+              'shelfRenderer']["content"][
+              'horizontalListRenderer']["items"]
+          break
+      # playlists = initial_data["contents"][
+      #     "twoColumnBrowseResultsRenderer"][
+      #     "tabs"][3]["tabRenderer"]["content"][
+      #     "sectionListRenderer"]["contents"][0][
+      #     "itemSectionRenderer"]["contents"][0][
+      #     'shelfRenderer']["content"][
+      #     'horizontalListRenderer']["items"]
     except (KeyError, IndexError, TypeError):
       print("Error extracting playlists")
       playlists = []
