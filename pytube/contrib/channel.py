@@ -220,6 +220,7 @@ class Channel(Playlist):
         if tab["tabRenderer"]["title"] == "Playlists":
           playlists = tab["tabRenderer"]["content"][
               "sectionListRenderer"]["contents"][0][
+              "itemSectionRenderer"]["contents"][0][
               'shelfRenderer']["content"][
               'horizontalListRenderer']["items"]
           break
